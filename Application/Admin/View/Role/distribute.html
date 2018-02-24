@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>南京工业大学电气工程与控制科学学院时间管理网站后台分配权限</title>
+        <link href="__PUBLIC__/Admin/css/mine.css" type="text/css" rel="stylesheet" />
+        <link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <script src="__PUBLIC__/js/jquery.min.js"></script>
+        <style>
+         li{
+            list-style:none;
+            font-size:10px;
+            font-weight:bold;
+         }
+         #parent{
+            color:red;
+         }
+         
+        </style>
+    </head>
+    <body>
+        <style>
+            .tr_color{background-color: #9F88FF}
+        </style>
+       <div class="alert alert-info" role="alert"><font size="5px">正在为</font><font  size="5px" color="red">{$info['role_name']}</font><font size="5px" >分配权限</font></div>
+        <span style="float: right; margin-right: 8px; font-weight: bold;">
+							<a style="text-decoration: none;" href="<?php echo U('Role/showlist');?>">【返回】</a>
+		</span>
+        <form method="post" action="__SELF__">
+        <?php   foreach($pinfo as $k=>$v):?>
+<li >
+<ol>
+<font size="5px" color="red">{$v.auth_name}</font><input type="checkbox" name="auth_name[]" <?php if(in_array($v['auth_id'],$auth_ids)){
+                                          echo "checked='checked'";
+              }?>value="{$v.auth_id}" />
+    <?php foreach($qinfo as $kk=>$vv):?>
+  <li >
+  <ol>         
+  <font size="3px" color="blue">
+  <?php if($v['auth_id']==$vv['auth_pid']){echo $vv['auth_name'];?>
+  </font>
+               <input type="checkbox" name='auth_name[]' value="<?php echo $vv['auth_id'];?>" 
+             <?php if(in_array($vv['auth_id'],$auth_ids)){
+                                          echo "checked='checked'";
+              }?> />
+                 <?php foreach($rinfo as $k=>$vvv){if($vvv['auth_pid']==$vv['auth_id']){?>
+            <li><ol><font size="2px" color="blue"><?php echo $vvv['auth_name'];?></font><input type="checkbox" name="auth_name[]"
+            <?php if(in_array($vvv['auth_id'],$auth_ids)){
+                                          echo "checked='checked'";
+              }?> value="<?php echo $vvv['auth_id'];?>"/></ol></li>      
+            <?php }}?>
+           
+          <?php }?>
+  </ol>
+  </li>
+           <?php endforeach;?>
+     
+</ol>
+ </li>
+        <?php endforeach;?>
+        <div style="margin-left:100px">
+         <button type="submit" class="btn btn-info"  id="add">分配</button>
+        </div>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台导入成绩页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<style>
+.body{
+ margin:0px;
+ padding:0px;
+}
+.contain{
+ width:atuo;
+ height:600px;
+}
+.top{
+ width:auto;
+ height:100px;
+ text-align:center;
+}
+.main{
+ width:auto;
+ height:100px;
+}
+
+.left{
+  width:480px;
+  height:60px;
+  float:left;
+  padding-left:200px;
+}
+.right{
+  width:400px;
+  height:60px;
+  float:left;
+  padding-left:30px;
+  padding-top:10px;
+} 
+ textStyle{
+    face:华文行楷;
+	font-weight:bold;
+   }
+  .txt{
+     width:800px;
+	 height:50px;
+	 color:red;
+	 font-size:20px;
+	 padding-top:10px;
+   }
+</style>
+</head>
+<body>
+     <div class="contain">
+           <div class="top">
+		      <div class="alert alert-info" role="alert"><font size="5px">按班级、学期成绩信息导入</font><font  size="4px" color="red">（注意学期学期必须填写）</font></div>
+		   </div>
+		   <div class="main">
+		      <form action="__SELF__" method="post" enctype="multipart/form-data">
+		                       <div class="input-group input-group-lg">
+									<span class="input-group-addon" id="sizing-addon1">学年</span>
+										   <select  name="years" class="form-control">
+												 <option value="2012-2013">2012-2013</option>
+												 <option value="2013-2014">2013-2014</option>
+												 <option value="2014-2015">2014-2015</option>
+												 <option value="2015-2016">2015-2016</option>
+												 <option value="2016-2017">2016-2017</option>
+												 <option value="2017-2018">2017-2018</option>
+												 <option value="2018-2019">2018-2019</option>
+												  <option value="2019-2020">2019-2020</option>
+												 <option value="2020-2021">2020-2021</option>
+												 <option value="2021-2022">2021-2022</option>
+												 <option value="2022-2023">2022-2023</option>
+											</select>
+								</div>   
+			                  <div class="input-group input-group-lg">
+									<span class="input-group-addon" id="sizing-addon1">学期</span>
+											<select class="form-control" name="term">
+												<option value="1">1</option>
+												<option value="2">2</option>
+											</select>
+					          </div>	
+							  <div class="left">
+							     <textStyle> 选择文件 </textStyle><input type="file" name="file1"/></br>
+							  </div>
+                              <div class="right">
+							       <button type="submit" class="btn btn-info" id="search" onclick="return isCheck()">导入</button>
+							  </div>
+							  	</form> 
+		   </div>
+		   	 <div class="txt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学生成绩信息导入示例表
+		        <a href="__MODULE__/Student/downfile/file_name/StuScoreInfoTab.xlsx">下载</a>
+		   </div>
+     </div>	 
+</body>
+</html>
+<script>
+ function isCheck(){
+		var status=false;//接受用户选的状态,默认不会提交
+		status=confirm("确认导入成绩",true,false);//点确认返回true,否则返回false;
+    return status;
+}
+</script> 	

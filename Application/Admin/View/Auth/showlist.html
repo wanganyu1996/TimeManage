@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+        <title>南京工业大学电气工程与控制科学学院时间管理网站后台权限列表</title>
+
+        <link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <script src="__PUBLIC__/js/jquery.min.js"></script>
+    </head>
+    <body>
+        <style>
+		    th{
+			 text-align:center;
+			}
+			td{
+			 text-align:center;
+			}
+            .tr_color{background-color: #9F88FF}
+			#null{
+				height:6px;
+			}
+        </style>
+        <div class="div_head">
+            <span>
+			 <div class="alert alert-info" role="alert"><font size="4px">当前位置是：权限管理->权限列表</font></div>
+			 <div>
+                <span style="float: right; margin-right: 8px; font-weight: bold;">
+                    <a style="text-decoration: none;" href="<?php echo U('add');?>">【添加权限】</a><br/>
+                </span>
+             </div>
+            </span>
+        </div>
+        <div id="null">
+        </div>
+        <div style="font-size: 13px; margin: 10px 5px;">
+		     <div class="table-responsive">
+					<table class="table table-striped">
+					<tr class="table"><th>序号</th><th>权限名称</th><th>控制器</th><th>操作方法</th><th>全路径</th><th>操作</th></tr>
+						<?php foreach($info as $k=>$v):?>
+                       <tr  class="tron">
+                        <td>{$v.auth_id}</td>
+                        <td>{$v.auth_name}</td>
+                        <td>{$v.auth_module}</td>
+                        <td>{$v.auth_action}</td>
+                        <td>{$v.auth_path}</td>
+						<td>空</td>
+                      </tr>
+                    <?php endforeach;?>	
+					</table>
+		        </div> 
+        </div>
+    </body>
+</html>
+<script type="text/javascript"  src="__PUBLIC__/js/tron.js"></script>

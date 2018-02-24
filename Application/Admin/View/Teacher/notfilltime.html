@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站时间未填报页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/jquery.min.js"></script>
+<link href="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="__PUBLIC__/datepicker/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/datepicker_zh-cn.js"></script>
+<style>
+#setime{
+	background-color:white;
+}
+input{
+	background-color:white;
+}
+body{
+	margin:0px;
+	padding:0px;
+}
+ .box{
+  width:auto;
+  height:900px;
+  margin-left:1px;
+  padding-left:0px;
+ }
+ .top{
+  width:auto;
+  height:270px;
+  text-align:center;
+ }
+ .showinfo{
+  width:auto;
+  height:500px;
+ }
+ .pageinfo{
+  width:auto;
+  height:50px;
+ }
+ th{
+  text-align:center;
+ }
+ td{
+  text-align:center;
+ }
+</style>
+</head>
+<body>
+      <div class="box">
+	      <div class="top">
+		  <div class="alert alert-info" role="alert"><font size="5px">时间未填报名单统计</font><font size="4px" color="red">(注意：只可以统计某天未填报的名单)</font></div>
+		  <form action="__SELF__" method="get">
+		       <div id="setime">
+				  <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">输入时间</span>
+										 <input type="text" name="starttime"  value="<?php  if(I('get.starttime',-1))echo I('get.starttime');?>" id="starttime" class="form-control" placeholder="输入时间" aria-describedby="basic-addon1">
+				  </div>
+			</div>
+				  <button class="btn btn-info"  type="submit" id="submit">确认</button>	
+				  </form>
+		  </div>
+	       
+		   <div class="showinfo">
+		        <div class="table-responsive">
+					<table class="table table-striped">
+					<tr class="table"><th>姓名</th><th>学号</th><th>班级</th><th>时间</th><th>填报状态</th></tr>
+					<volist name="data" id="v">
+						<tr class="tron"><td>{$v.stuname}</td><td>{$v.stuid}</td><td>{$v.stuclass}</td><td>{$v.today}</td><td>未填报</td></tr>		
+					</volist>
+					</table>
+		        </div> 
+				<div class="pageinfo"></div>	
+		   </div>
+
+       </div>
+     
+   
+</body>
+</html>
+<script>
+$('#starttime').datepicker();
+ $('#endtime').datepicker();
+  </script>
+  <script type="text/javascript"  src="__PUBLIC__/js/tron.js"></script>

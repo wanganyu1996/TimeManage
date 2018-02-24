@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台添加导师管理员页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<style>
+    body{
+	  margin:0px;
+	  padding:0px;
+	}
+   .contain{
+     width:auto;
+	 height:860px;
+	 margin-right:100px;
+   }
+   .up{
+    width:auto;
+    height:300px;
+    text-align:center;
+     
+   }
+   .down{
+    width:auto;
+	height:600px;
+	text-align:center;
+   }
+   .left{
+     width:300px;
+	 height:60px;
+	 float:left;
+	 margin-left:350px;
+     padding-left:130px;
+   }
+   .right{
+     width:200px;
+	 height:60px;
+	 float:left;
+	 padding-left:50px;
+	 padding-top:10px;
+   }
+   .img{
+     width:500px;
+	 height:100px;
+   }
+   .txt{
+     width:800px;
+	 height:50px;
+	 color:red;
+	 font-size:20px;
+	 padding-top:10px;
+   }
+   .stuinfo{
+    width:500px;
+	height:600px;
+    margin-left:400px;
+   }
+   textStyle{
+    face:华文行楷;
+	font-weight:bold;
+   }
+  .txt{
+     width:800px;
+	 height:50px;
+	 color:red;
+	 font-size:20px;
+	 padding-top:10px;
+   }
+</style>
+</head>
+<body>
+    <div class="contain">
+    <div class="up">
+		<div class="alert alert-info" role="alert"><font size="5px">导师管理员信息导入</font></div>
+		   <div class="left"> 
+      <form action="__MODULE__/Student/addteacher " method="post" enctype="multipart/form-data">
+	            <textStyle> 选择文件</textStyle><input  type="file" name="adminfile"/></br>
+		   </div>       
+	       <div class="right">
+                 <button type="submit" class="btn btn-info" id="search" onclick="return isYesNo()">导入</button>
+				 <script>
+				    function isYesNo(){
+					  var res = confirm('您确认导入吗');
+					  if(res){
+					    
+					    return true;
+					  }
+					 return false;
+					}
+				 
+				 
+				 </script>
+		   </div>	
+		  <div class="txt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;导师管理员信息示例表
+		        <a href="__MODULE__/Teacher/downfile/file_name/TutorialInforSamTab.xls">下载</a>
+		   </div>
+	    </form>
+ </div>
+		</div>
+
+
+
+
+
+
+    </div>	
+   
+</body>
+</html>

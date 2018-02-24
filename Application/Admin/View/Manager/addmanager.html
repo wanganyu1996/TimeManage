@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台添加管理员</title>
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+</head>
+<style>
+.box{
+  width:auto;
+  height:300px;
+}
+.info{
+ width:auto;
+ height:40px;
+ text-align:center;
+ margin-left:300px;
+ font-family:bolder;
+ font-style
+}
+.find{
+ text-align:center;
+}
+font1{
+  font-weight:bold;
+  font-family:宋体;
+}
+</style>
+<body>
+  <div class="box">
+         <div class="alert alert-info" role="alert"><font size="4px">当前位置：管理员管理->添加管理员</font></div>
+         	    <span style="float: right; margin-right: 8px; font-weight: bold;">
+		                      <a style="text-decoration: none;" href="<?php echo U('Manager/showlist');?>">【返回】</a>
+		                    </span>
+		                    <br/>
+		 <form action="__SELF__" method="post">
+		    <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><font1>账　　号</font1></span>
+                <input type="text"  name="ad_username" class="form-control" placeholder="账号" aria-describedby="basic-addon1">
+            </div>
+			 <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><font1>密　　码<font1></span>
+                <input type="password" name="ad_password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+            </div>
+             <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><font1>真实姓名</font1></span>
+                <input type="text"  name="real_name" class="form-control" placeholder="真实姓名(可以不填,但当添加角色为导师的管理员时，则必须填写)" aria-describedby="basic-addon1">
+            </div>
+		    <div class="input-group input-group-mg">
+              <span class="input-group-addon"><font1>角　　色</font1></span>
+			  <select class="form-control" id="selectyear" name="ad_role_id">
+			        <volist name="info" id="v">
+			      <option  value="{$v.role_id}">{$v.role_name}</option>
+			      </volist>
+			  </select>
+		   </div>  
+		   <!-- 
+		   <div class="info">
+		         <font1>是否启用：</font1><input type="radio" name="is_use" value="1" checked/><font1>启用</font1>
+		       <input type="radio" name="is_use" value="0"/><font1> 禁用</font1>
+		   </div>
+		    -->
+		  <div class="find">
+		   <button class="btn btn-info" type="submit" onclick="return addAdminer()">添加</button>
+		  </div> 
+		 </form>
+		 
+   </div>  
+			   <script>
+				       function addAdminer(){
+									var status=false;//接受用户选的状态,默认不会提交
+									status=confirm("确认添加",true,false);//点确认返回true,否则返回false;
+									return status;
+									/*
+									alert(status);
+										  if(status==true){
+										     return true;//当返回true时，表单会被提交
+										     alert("确认");
+										  }else{
+										    // alert("no");
+											 return false;//返回false不会被提交
+										  }
+										  alert("确认");*/
+									  }		  
+			  </script>   
+<!---->
+
+</body>
+</html>

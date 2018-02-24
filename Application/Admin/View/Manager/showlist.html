@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+        <title>南京工业大学电气工程与控制科学学院时间管理网站后台管理员列表</title>
+
+  <link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <script src="__PUBLIC__/js/jquery.min.js"></script>
+    </head>
+    <style>
+    th{
+	  text-align:center;
+	}
+    td{
+	    text-align:center;
+    }
+    
+   </style>
+    <body>
+        <style>
+            .tr_color{background-color: #9F88FF}
+        </style>
+        <div class="div_head">
+            <span>
+			     <div class="alert alert-info" role="alert"><font size="4px">当前位置是：管理员管理->管理员列表</font></div>
+                <span style="float: right; margin-right: 8px; font-weight: bold;">
+                    <a style="text-decoration:none;" href="__MODULE__/Manager/addmanager">【添加管理员】</a>
+                </span>
+            </span>
+        </div>
+        <div style="height:6px;">
+        </div>
+        <div style="font-size: 13px; margin: 10px 5px;">
+		    <div class="table-responsive">
+					<table class="table table-striped">
+					<tr class="table"><th>序号</th><th>管理员名称</th><th>管理员真实姓名</th><th>管理员密码</th><th>角色</th><th>操作</th></tr>
+					<?php foreach($info as $k=>$v){?>
+                        <tr class="tron">
+                        <td><?php echo $v['id'];?></td>
+                        <td><?php echo $v['ad_username'];?></td>
+                        <td><?php echo $v['real_name'];?></td>
+                        <td><?php echo $v['ad_password'];?></td>
+                        <td><?php echo $rinfo[$v['ad_role_id']];?></td>
+                        <td><a href="<?php echo U('upd?id='.$v['id']);?>">修改</a>|<a href="<?php echo U('delete?id='.$v['id']);?>">删除<a/></td>
+                        </tr>
+                   <?php }?>
+					</table>
+		        </div> 
+        </div>
+    </body>
+</html>
+<script type="text/javascript"  src="__PUBLIC__/js/tron.js"></script>

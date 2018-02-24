@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台添加学生</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<style>
+    body{
+	  margin:0px;
+	  padding:0px;
+	}
+   .contain{
+     width:auto;
+	 height:860px;
+   }
+   .up{
+    width:auto;
+    height:300px;
+    text-align:center;
+     
+   }
+   .down{
+    width:auto;
+	height:600px;
+	text-align:center;
+   }
+   .left{
+     width:300px;
+	 height:60px;
+	 float:left;
+	 margin-left:350px;
+     padding-left:130px;
+   }
+   .right{
+     width:200px;
+	 height:60px;
+	 float:left;
+	 padding-left:50px;
+	 padding-top:10px;
+   }
+   .img{
+     width:500px;
+	 height:100px;
+   }
+   .txt{
+     width:800px;
+	 height:50px;
+	 color:red;
+	 font-size:20px;
+	 padding-top:10px;
+   }
+.txt2{
+     width:800px;
+	 height:50px;
+	 color:blue;
+	 font-size:20px;
+	 padding-top:10px;
+   }
+   .stuinfo{
+    width:500px;
+	height:600px;
+    margin-left:400px;
+   }
+</style>
+</head>
+<body>
+    <div class="contain">
+
+    <div class="up">
+		<div class="alert alert-info" role="alert"><font size="5px">全体学生信息导入</font></div>
+		   
+		   <div class="left"> 
+		         <form action="__MODULE__/Student/addstudent " method="post" enctype="multipart/form-data">
+	              选择文件 <input type="file" name="stufile"/></br>
+		   </div>       
+	       <div class="right">
+                 <button type="submit" class="btn btn-info" id="search" onclick="return isYesNo()">导入</button>
+		   </div>	
+		     <div class="txt2">Excel示例模板<a  href="__MODULE__/Student/downfile/file_name/StuInfoSampleTab.xlsx">下载</a></div>
+		     <br/>
+		   <!--<div class="txt">导入的Excel示例图</div>
+				   <div class="img">		   
+					<img src="__PUBLIC__/images/studentlist.png"/>
+				   </div>  -->
+		       </form>
+           </div>
+	   
+    
+		
+		
+	<div class="down">
+		<div class="alert alert-info" role="alert"><font size="5px">单个学生信息录入</font></div>
+		  <div class="stuinfo">
+		  <form action="__MODULE__/Student/addstudent" method="post">
+			<div class="input-group input-group-mg ">
+                        <label>&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;班级</label>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<select   name="classname" id="stuclass" class="form-control">
+						         <volist name="info" id="v">
+								 <option   value="{$v.classname}">{$v.classname}</option>
+								 </volist>
+						   </select>
+            </div>
+		               
+					   <div class="input-group ">
+							   <label>学号&nbsp;&nbsp;&nbsp;</label>
+							  <input id="stuid" name="stuid" type="text" class="form-control" placeholder="学号" aria-describedby="basic-addon1">
+					   </div>
+					   <div class="input-group ">
+							   <label>姓名&nbsp;&nbsp;&nbsp;</label>
+							 
+							  <input id="stuname"  name="stuname" type="text" class="form-control" placeholder="姓名" aria-describedby="basic-addon1">
+					   </div>
+					   <div class="input-group ">
+							   <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							   &nbsp;&nbsp;&nbsp;&nbsp;性别&nbsp;&nbsp;&nbsp;</label><br/>
+							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;男</label> 
+							<input name="sex" type="radio" value="1">	&nbsp;&nbsp;&nbsp;<label>&nbsp;&nbsp;&nbsp;女</label>
+							<input type="radio" name="sex" value="0">
+												   </div>
+					   <div class="input-group ">
+							   <label>身份证</label>
+							 
+							  <input id="stucard"  name="idcard" type="text" class="form-control" placeholder="身份证" aria-describedby="basic-addon1">
+					   </div>
+					   <div class="input-group ">
+							   <label>手机&nbsp;&nbsp;&nbsp;</label>
+							 
+							  <input id="stuphone" name="phone" type="text" class="form-control" placeholder="手机" aria-describedby="basic-addon1">
+					   </div>
+					   <div class="input-group ">
+							   <label>电邮&nbsp;&nbsp;&nbsp;</label>
+							 
+							  <input id="stuemail" type="text"  name="email" class="form-control" placeholder="电邮" aria-describedby="basic-addon1">
+					   </div>
+					   <div class="right">
+							 <button type="submit" class="btn btn-info"  id="add" onclick="return isYesNo()">添加</button>
+							 <script>
+							    function isYesNo(){
+								  var res = confirm('您确认吗');
+								  if(res){
+								     return true;
+								  }
+								  return false;
+								}
+							   
+							 </script>
+					   </div>
+					   </form>
+					   <script>
+					   /*   $(function(){
+						     $('#addqweqe').click(function(){
+							  
+							  for(var i=1;i<8;i++){
+							     if( $('input').eq(i).val()=="" ){
+								    alert('输入不完整');
+									return false;
+								 }
+							  
+							  }
+							  
+							 
+							    student = new Array(7);
+								student['stuclass']=$('#stuclass option:selected').val();
+								student['stuid']=$('#stuid').val();
+								student['stuname']=$('#stuname').val();
+								student['stusex']=$('#stusex').val();
+								student['stucard']=$('#stucard').val();
+								student['stuphone']=$('#stuphone').val();
+								student['stuemail']=$('#stuemail').val();
+								
+								$.ajax({
+								  url:'',
+								  type:'',
+								  dataType:'',
+								  data:'',
+								  success:function(res){
+								  
+								  }
+								
+								
+								})
+							 });
+						    
+						  });*/
+					   </script>
+		       </div>
+         </div>
+
+		</div>
+    </div>	
+   
+</body>
+</html>

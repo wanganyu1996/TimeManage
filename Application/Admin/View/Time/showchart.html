@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台时间分类统计页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="__PUBLIC__/datepicker/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/datepicker_zh-cn.js"></script>
+<script src="__PUBLIC__/js/Chart.js"></script>
+<script src="__PUBLIC__/jquery.min.js"></script>
+<style>
+#setime{
+	background-color:white;
+}
+body{
+margin:0px;
+padding:0px;
+}
+.box{
+    width:auto;
+	height:1300px;
+	margin-left:10px;
+	padding-left:0px;
+	}
+.top{
+    width:auto;
+	height:200px;
+	text-align:center;
+  } 
+.main{
+   width:auto;
+   height:500px;
+}  
+#charts{
+  width:auto;
+  height:500px;
+}
+.pageinfo{
+ width:auto;
+ height:40px;
+ text-align:center;	
+ font-weight:bold;
+}
+.barchart{
+ float:left;
+ width:580px;
+ height:500px;
+ 
+}
+.piechart{
+ float:left;
+ width:400px;
+ height:400px;
+ margin-top:100px;
+}
+.stuinfo1{
+    float:left;
+	width:400px;
+	height:45px;
+	margin-top:10px;
+	margin-left:60px;
+	padding-top:10px;
+	padding-left:3px;
+  }
+.stuinfo2{
+    float:left;
+	width:400px;
+	height:45px;
+	margin-top:10px;
+	margin-left:60px;
+  }
+  .sorttype{
+   width:300px;
+   height:50px;
+   float:right;
+  }
+  .location{
+  width:1000px;
+  height:40px;
+   text-align:center;
+  }
+  .types{
+    width:110px;
+	height:230px;
+	float:left;
+	margin-top:150px;
+	margin-left:20px;
+  }
+  txt{
+   font-size:18px;
+   color:gray;
+   font-family:bold;
+   font-weight:5px;
+  }
+  th{
+   text-align:center;
+   background-color:lightblue;
+  }
+  td{
+   text-align:center;
+  }
+  .showText{
+    margin-left:8px;
+	padding=left:7px;
+	margin-bottom:5px;
+    width:90px;
+	height:20px;
+    float:left;
+	display:block;
+	background-color:white;
+  }
+  #tip{
+	text-align:center;
+  }
+</style>
+</head>
+<body>
+     <div class="box">
+	       <div class="top">
+		   <form action="__SELF__" method="get">
+		    <div class="alert alert-info" role="alert"><font size="5px">分类统计</font></div>
+		    <input type="hidden" value="<?php echo I('get.class');?>" name="class">
+		          <div id="setime">
+			            <div class="stuinfo2">
+								   <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">开始时间</span>
+										  <input type="text" name="starttime"  value="<?php  if(I('get.starttime',-1))echo I('get.starttime');?>" id="starttime" class="form-control" placeholder="开始时间" aria-describedby="basic-addon1">
+								   </div>
+						</div>
+						 <div class="stuinfo2">
+						          <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">结束时间</span>
+										 <input type="text" class="form-control" value="<?php  if(I('get.endtime',-1))echo I('get.endtime');?>" name="endtime"  id="endtime" placeholder="开始时间" aria-describedby="basic-addon1">
+										 
+								   </div>
+						 </div>
+				   </div>
+						 <div class="stuinfo2">
+									 <div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1">填报类目</span>
+											   <select class="form-control" name="items">
+											     
+													 <option value="ktxx" <?php if(I("get.items",-1)=='ktxx')echo "selected";?>>课堂学习</option>
+													 <option value="kwjz" <?php if(I("get.items",-1)=='kwjz')echo "selected";?>>课外讲座</option>
+													 <option value="zwzx" <?php if(I("get.items",-1)=='zwzx')echo "selected";?>>早晚自习</option>
+													 <option value="rjjw" <?php if(I("get.items",-1)=='rjjw')echo "selected";?>>人际交往</option>
+													 <option value="tydl" <?php if(I("get.items",-1)=='tydl')echo "selected";?>>体育锻炼</option>
+													 <option value="kjcx" <?php if(I("get.items",-1)=='kjcx')echo "selected";?>>科技创新</option>
+													 <option value="swyx" <?php if(I("get.items",-1)=='swyx')echo "selected";?>>上网游戏</option>
+													 <option value="nwws" <?php if(I("get.items",-1)=='nwws')echo "selected";?>>内务卫生</option>
+													 <option value="sthd" <?php if(I("get.items",-1)=='sthd')echo "selected";?>>社团活动</option>
+												</select>
+										</div>
+									
+						</div>
+						<div class="stuinfo1">
+						       <input type="radio" name="sort" value="asc" <?php if(I("get.sort",-1)=='asc'||I("get.sort",-1)==-1)echo "checked";?>/><txt>升序	</txt>	
+							   <input type="radio" name="sort" value="desc" <?php if(I("get.sort",-1)=='desc')echo "checked";?>/><txt>降序	</txt>
+						
+						</div>
+						
+						
+		   </div>
+		  <div class="location"> <input class="btn btn-info" type="submit" value="确认"/>
+		                         <a href="#showChartss" class="btn btn-info">报表</a>
+		 </div>
+		 </form>
+           <div class="main">
+				   <div class="table-responsive">
+							<table class="table table-striped">
+							<tr class="table"><th>填报日期</th><th>学年</th><th>周次</th><th>星期</th><th>班级</th><th>学号</th><th>姓名</th><th>课堂学习</th><th>课外讲座</th><th>早晚自习</th><th>人际交往</th><th>体育锻炼</th><th>科技创新</th>
+							<th>上网游戏</th><th>内务卫生</th><th>社团活动</th></tr>
+								<volist name="info" id="v">
+								<tr class="tron"><td>{$v.today}</td><td>{$v.year}</td><td>{$v.week}</td><td>{$v.xq}</td><td>{$v.stuclass}</td><td>{$v.stuid}</td><td>{$v.stuname}</td><td>{$v.ktxx}</td><td>{$v.kwjz}</td><td>{$v.zwzx}</td>
+								<td>{$v.rjjw}</td><td>{$v.tydl}</td><td>{$v.kjcx}</td><td>{$v.swyx}</td><td>{$v.nwws}</td><td>{$v.sthd}</td>
+								</tr>		
+								</volist>
+							</table>
+						</div> 
+		   <div class="pageinfo">
+		   {$pagelist}
+		   </div>
+		   </div>
+           
+           <div id="charts">
+		    <a name="showChartss"></a>
+		    <div  id="tip" class="alert alert-info" role="alert"><font size="4px">报表显示，全班某个时间段内全体学生于各个类目所占比例，分柱状统计图与扇形统计图</font></div>
+		      <div class="barchart">
+			     <canvas id="bar" height="400" width="600" style="width: 400px; height: 300px;"></canvas>
+ 
+			  </div>
+			  <div class="types">
+			                <div class="showText" id="0"></div>
+						    <div class="showText" id="1"></div>
+						    <div class="showText" id="2"></div>
+						    <div class="showText" id="3"></div>
+						    <div class="showText" id="4"></div>
+						    <div class="showText" id="5"></div>
+						    <div class="showText" id="6"></div>
+						    <div class="showText" id="7"></div>
+						    <div class="showText" id="8"></div>
+			  </div>
+		      <div class="piechart">
+			     <canvas id="pie" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
+			  </div>
+		   </div>		   
+	 </div>
+      <script>
+	  
+
+	  
+        var str={$str};//字符串数据
+		typeData= new Array(9);//存储学生时间数据
+		perCent = new Array(9);
+		typeData = str.split(',');//将接受到的数据截取保存到数组里
+		var allTime=0;
+		for(var i=0;i<typeData.length;i++)
+		   {
+		      typeData[i]=parseInt(typeData[i]);
+		      allTime+=typeData[i];
+		   } 
+		//alert(allTime);
+		for(var j=0;j<perCent.length;j++){
+		    perCent[j]=Math.round(typeData[j]/allTime*100);
+           // alert(perCent[j]);
+		}
+		//扇形统计图
+		pieColor = new Array(9);
+		pieColor[0]="#CDC9A5";
+		pieColor[1]="#B4EEB4";
+		pieColor[2]="#A4D3EE";
+		pieColor[3]="#9F79EE";
+		pieColor[4]="#8B7500";
+		pieColor[5]="#00BA62";
+		pieColor[6]="#DDA0DD";
+		pieColor[7]="#00C5CD";
+		pieColor[8]="#00FFFF";
+		
+		typeName = new Array(9);
+		typeName[0]="课堂学习";
+		typeName[1]="课外讲座";
+		typeName[2]="早晚自习";
+		typeName[3]="人际交往";
+		typeName[4]="体育锻炼";
+		typeName[5]="科技创新";
+		typeName[6]="上网游戏";
+		typeName[7]="内务卫生";
+		typeName[8]="社团活动";
+		var div = $(".types");
+	                        // div.children().css('background-color','red').css('display','block');
+		var num=0;
+		for(var j=0;j<typeData.length;j++){
+		   if(typeData[num++]!=0){
+		     // alert(typeData[j]);
+			div.children().eq(j).css('background-color',pieColor[j]).css('display','block').html(typeName[j]+"  "+perCent[j]+"%");
+		   }
+		}
+		
+		var pieData = [
+				{
+					value: typeData[0],
+					color:pieColor[0]
+				},
+				{
+					value: typeData[1],
+					color:pieColor[1]
+				},
+				{
+					value: typeData[2],
+					color:pieColor[2]
+				},
+				{
+					value: typeData[3],
+					color:pieColor[3]
+				},
+				{
+					value: typeData[4],
+					color:pieColor[4]
+				},
+				{
+					value: typeData[5],
+					color:pieColor[5]
+				},
+				{
+					value: typeData[6],
+					color:pieColor[6]
+				},
+				{
+					value: typeData[7],
+					color:pieColor[7]
+				},
+				{
+					value: typeData[8],
+					color:pieColor[8]
+				}
+			
+			];
+		//条形统计图
+			
+			
+		var barChartData = {
+			labels : [typeName[0],typeName[1],typeName[2],typeName[3],typeName[4],typeName[5],typeName[6],typeName[7],typeName[8],],
+			datasets : [
+				
+				{
+					fillColor : "#00aced",
+					strokeColor : "#00aced",
+					data : [typeData[0],typeData[1],typeData[2],typeData[3],typeData[4],typeData[5],typeData[6],typeData[7],typeData[8],]
+				}
+			]
+			
+		};
+	new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+	new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+	</script>
+	</body>
+</html>
+<script>
+  $('#starttime').datepicker();
+  $('#endtime').datepicker();
+</script>
+  <script type="text/javascript"  src="__PUBLIC__/js/tron.js"></script>

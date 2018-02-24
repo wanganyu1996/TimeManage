@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台时间分类统计页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="__PUBLIC__/js/Chart.js"></script>
+
+
+<link href="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="__PUBLIC__/datepicker/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/datepicker_zh-cn.js"></script>
+
+<!--  <script src="__PUBLIC__/js/jquery.min.js"></script>-->
+<style>
+  body{
+   margin:0px;
+   padding:0px;
+  }
+  .contain{
+    width:auto;
+	height:1200px;
+	margin-left:10px;
+  }
+  .top{
+    width:auto;
+	height:250px;
+	text-align:center;
+  }
+  .main{
+    width:auto;
+	height:500px;
+	text-align:center;
+  }
+  .bottom{
+    width:auto;
+	height:450px;
+	text-align:center;
+  }
+  .stuinfo{
+   width:auto;
+   height:50px;
+   
+  }
+  .stuinfo1{
+   float:left;
+   width:300px;
+   height:45px;
+   margin-left:10px;
+  }
+  .stuinfo2{
+    float:left;
+	width:400px;
+	height:45px;
+    margin-left:40px;
+  }
+  .button{
+    width:990px;
+	height:50px;
+	text-align:left;
+  }
+  .addtime{
+    width:500px;
+	height:70px;
+  }
+  .lefttime{
+    float:left;
+	width:200px;
+	height:55px;
+  }
+  .righttime{
+   float:left;
+   width:200px;
+   height:55px;
+  }
+  .pageinfo{
+	width:auto;
+  	height:40px;
+  	margin-top:20px;
+  }
+  .barshow{
+    float:left;
+    width:650px;
+	height:400px;
+	display:none;
+	
+  }
+  .pieshow{
+    margin-top:70px;
+    float:left;
+    width:350px;
+	height:350px;
+	
+  }
+   .showText{
+    margin-left:8px;
+	padding=left:7px;
+	margin-bottom:5px;
+    width:90px;
+	height:20px;
+    float:left;
+	display:none;
+	background-color:white;
+  }
+  .types{
+    width:110px;
+	height:230px;
+	float:left;
+	margin-top:120px;
+	margin-left:10px;
+	
+  }
+  th{
+	text-align:center;
+  }
+  td{
+	text-align:center;
+  }
+</style>
+</head>
+<body>
+      <div class="contain">
+	      <div class="top">
+		      <div class="alert alert-info" role="alert"><font size="5px">时间查询</font><font size="3px" color="red">(若开始时间和结束时间填写，则上面的其他条件自动忽略)</font></div>
+			<form  method="__SELF__" name="search">	
+			
+			  <?php $stuid=I('get.stuid');
+                  if(!empty($stuid)){?>
+			    <input type="hidden" name="stuid" value="<?php echo I('get.stuid');?>"/>
+			    <?php }?>
+			    
+			     <?php 
+                  $stuname=I('get.stuname');
+                 if(!empty($stuname)){?>
+			    <input type="hidden" name="stuname" value="<?php echo I('get.stuname');?>"/>
+			    <?php }?>
+				<div class="stuinfo">		 
+					<div class="stuinfo1">
+						<div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="sizing-addon1">学年</span>
+					 <select  id="year" class="form-control" name="year">
+                        <option value="2014-2015" <?php if(I('get.year',-1)=='2014-2015') echo 'selected';?>>2014-2015</option>
+						<option value="2015-2016"<?php if(I('get.year',-1)=='2015-2016') echo 'selected';?>>2015-2016</option>
+					    <option value="2016-2017"<?php if(I('get.year',-1)=='2016-2017') echo 'selected';?>>2016-2017</option>
+						<option value="2017-2018"<?php if(I('get.year',-1)=='2017-2018') echo  'selected';?>>2017-2018</option>
+						<option value="2018-2019"<?php if(I('get.year',-1)=='2018-2019') echo 'selected';?>>2018-2019</option>
+						<option value="2019-2020"<?php if(I('get.year',-1)=='2019-2020') echo 'selected';?>>2019-2020</option>
+						<option value="2020-2021"<?php if(I('get.year',-1)=='2020-2021') echo 'selected';?>>2020-2021</option>
+						<option value="2021-2022"<?php if(I('get.year',-1)=='2021-2022') echo 'selected';?>>2021-2022</option>
+						<option value="2022-2023"<?php if(I('get.year',-1)=='2018-2019') echo 'selected';?>>2022-2023</option>
+					</select>
+					    </div>
+                    </div> 
+					<div class="stuinfo1">
+						 <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="sizing-addon1">学期</span>
+									<select class="form-control" name="term">
+										<option value="1"  <?php if(I('get.term',-1)==1||I('get.term',-1)==-1){echo "selected";} ?> >1</option>
+										<option value="2"  <?php if(I('get.term',-1)==2){echo "selected";}?> >2</option>
+									</select>
+					    </div>
+						
+					</div> 
+					<div class="stuinfo1">
+					    <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="sizing-addon1">周次</span>
+						     <select class="form-control" name="weeks">
+										  <option value="1"   <?php if(I('get.weeks',-1)==1||I('get.weeks',-1)==-1){echo "selected";}?>>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option  value="2" <?php if(I('get.weeks',-1)==2){echo "selected";}?>>2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="3"<?php if(I('get.weeks',-1)==3){echo "selected";}?>>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="4"<?php if(I('get.weeks',-1)==4){echo "selected";}?>>4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="5"<?php if(I('get.weeks',-1)==5){echo "selected";}?>>5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="6"<?php if(I('get.weeks',-1)==6){echo "selected";}?>>6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="7" <?php if(I('get.weeks',-1)==7){echo "selected";}?>>7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="8"<?php if(I('get.weeks',-1)==8){echo "selected";}?>>8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="9"<?php if(I('get.weeks',-1)==9){echo "selected";}?>>9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="10"<?php if(I('get.weeks',-1)==10){echo "selected";}?>>10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="11"<?php if(I('get.weeks',-1)==11){echo "selected";}?>>11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="12"<?php if(I('get.weeks',-1)==12){echo "selected";}?>>12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="13"<?php if(I('get.weeks',-1)==13){echo "selected";}?>>13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="14"<?php if(I('get.weeks',-1)==14){echo "selected";}?>>14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="15"<?php if(I('get.weeks',-1)==15){echo "selected";}?>>15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="16"<?php if(I('get.weeks',-1)==16){echo "selected";}?>>16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="17"<?php if(I('get.weeks',-1)==17){echo "selected";}?>>17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="18"<?php if(I('get.weeks',-1)==18){echo "selected";}?>>18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="19"<?php if(I('get.weeks',-1)==19){echo "selected";}?>>19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="20"<?php if(I('get.weeks',-1)==20){echo "selected";}?>>20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="21"<?php if(I('get.weeks',-1)==21){echo "selected";}?>>21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="22"<?php if(I('get.weeks',-1)==22){echo "selected";}?>>22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="23"<?php if(I('get.weeks',-1)==23){echo "selected";}?>>23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="24"<?php if(I('get.weeks',-1)==24){echo "selected";}?>>24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										  <option value="25"<?php if(I('get.weeks',-1)==25){echo "selected";}?>>25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+										 
+								   </select>
+					    </div>
+					
+					</div> 
+				</div>	
+                <div class="stuinfo">		 
+						 <div class="stuinfo2">
+								   <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">开始时间</span>
+										 <input type="text" name="starttime"  value="<?php  if(I('get.starttime',-1))echo I('get.starttime');?>" id="starttime" class="form-control" placeholder="开始时间" aria-describedby="basic-addon1">
+								   </div>
+						</div>
+						 <div class="stuinfo2">
+						          <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">结束时间</span>
+										 <input type="text" class="form-control"  name="endtime" value="<?php  if(I('get.endtime',-1))echo I('get.endtime');?>" id="endtime" placeholder="开始时间" aria-describedby="basic-addon1">
+								   </div>
+						 </div>
+				</div>	
+                <div class="stuinfo">		 
+						<button class="btn btn-info" id="submit">搜索</button>	 
+						<a href="#showCharts" class="btn btn-info">报表</a>
+				</div>									
+         </div>
+		 </form>
+		  <div class="main">
+		       <div class="alert alert-info" role="alert"><font size="5px"  color="red"><b>{$stuName}</b></font><font size="3px">同学时间管理信息显示</font></div>
+			     <div class="table-responsive">
+					<table class="table table-striped">
+					<tr class="table">
+					<th>填报日期</th>
+					<th>学年</th>
+					<th>学期</th>
+					<th>星期</th>
+					<th>周次</th>
+					<th>课堂学习</th>
+					<th>课外讲座</th><th>早晚自习</th>
+					<th>人际交往</th><th>体育锻炼</th>
+					<th>科技创新</th><th>上网游戏</th>
+					<th>内务卫生</th><th>社团活动</th></tr>
+								<volist  name="info" id="v">
+								  	 <tr class="tron"><td>{$v.today}</td><td>{$v.year}</td><td>{$v.term}</td>
+								  	  <td>{$v.xq}</td><td>{$v.week}</td>
+								  	 <td>{$v.ktxx}</td><td>{$v.kwjz}</td><td>{$v.zwzx}</td><td>{$v.rjjw}</td>
+								  	 <td>{$v.tydl}</td><td>{$v.kjcx}</td><td>{$v.swyx}</td><td>{$v.nwws}</td><td>{$v.sthd}</td>
+								  	 </tr>
+								</volist>			
+					</table>
+					<div class="pageinfo" style="font-weight:bold">{$pagelist}</div>
+		        </div> 
+		  </div>
+		  <div class="bottom">
+		     <a name="showCharts"></a>
+		     <div class="alert alert-info" role="alert"><font size="5px">统计图查看</font></div>
+		    <div class="barshow">
+			      <canvas id="bar" height="400" width="600" style="width: 400px; height: 300px;"></canvas>
+			</div>
+			       <div class="types">
+			                <div class="showText" id="0"></div>
+						    <div class="showText" id="1"></div>
+						    <div class="showText" id="2"></div>
+						    <div class="showText" id="3"></div>
+						    <div class="showText" id="4"></div>
+						    <div class="showText" id="5"></div>
+						    <div class="showText" id="6"></div>
+						    <div class="showText" id="7"></div>
+						    <div class="showText" id="8"></div>
+			  </div>
+			<div class="pieshow">
+			      <canvas id="pie" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
+			</div>
+		  </div>
+		  <script>
+        var str={$str};//单个学生字符串数据
+		//alert(str);
+		typeData= new Array(9);//存储学生时间数据
+		perCent = new Array(9);//存储时间比例数据
+		typeData = str.split(',');//将接受到的数据截取保存到数组里
+		var allTime=0;
+		for(var i=0;i<typeData.length;i++)
+		   {
+		      typeData[i]=parseInt(typeData[i]);
+		      allTime+=typeData[i];
+		   } 
+		for(var j=0;j<perCent.length;j++){
+		    perCent[j]=Math.round(typeData[j]/allTime*100);
+		}
+		//扇形统计图
+		pieColor = new Array(9);
+		pieColor[0]="#CDC9A5";
+		pieColor[1]="#B4EEB4";
+		pieColor[2]="#A4D3EE";
+		pieColor[3]="#9F79EE";
+		pieColor[4]="#8B7500";
+		pieColor[5]="#00BA62";
+		pieColor[6]="#DDA0DD";
+		pieColor[7]="#00C5CD";
+		pieColor[8]="#00FFFF";
+		
+		typeName = new Array(9);
+		typeName[0]="课堂学习";
+		typeName[1]="课外讲座";
+		typeName[2]="早晚自习";
+		typeName[3]="人际交往";
+		typeName[4]="体育锻炼";
+		typeName[5]="科技创新";
+		typeName[6]="上网游戏";
+		typeName[7]="内务卫生";
+		typeName[8]="社团活动";
+		var div = $(".types");
+		var num=0;
+		for(var j=0;j<typeData.length;j++){
+		   if(typeData[num++]!=0 && !isNaN(typeData[num])){
+			 $('.barshow').css('display','block');
+			div.children().eq(j).css('background-color',pieColor[j]).css('display','block').html(typeName[j]+"  "+perCent[j]+"%");
+		   }
+		}
+		
+		var pieData = [
+				{
+					value: typeData[0],
+					color:pieColor[0]
+				},
+				{
+					value: typeData[1],
+					color:pieColor[1]
+				},
+				{
+					value: typeData[2],
+					color:pieColor[2]
+				},
+				{
+					value: typeData[3],
+					color:pieColor[3]
+				},
+				{
+					value: typeData[4],
+					color:pieColor[4]
+				},
+				{
+					value: typeData[5],
+					color:pieColor[5]
+				},
+				{
+					value: typeData[6],
+					color:pieColor[6]
+				},
+				{
+					value: typeData[7],
+					color:pieColor[7]
+				},
+				{
+					value: typeData[8],
+					color:pieColor[8]
+				}
+			
+			];
+		//条形统计图
+			
+			
+		var barChartData = {
+			labels : [typeName[0],typeName[1],typeName[2],typeName[3],typeName[4],typeName[5],typeName[6],typeName[7],typeName[8],],
+			datasets : [
+				
+				{
+					fillColor : "#00aced",
+					strokeColor : "#00aced",
+					data : [typeData[0],typeData[1],typeData[2],typeData[3],typeData[4],typeData[5],typeData[6],typeData[7],typeData[8],]
+				}
+			]
+			
+		};
+	new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+	new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+		  </script>
+	  </div>
+</body>
+</html>
+<script>
+	
+   /*window.onload=function(){
+	   var date=new Date();
+	   var y=date.getFullYear();
+      var year=document.getElementById("year");
+     for(var i=0;i<year.options.length;i++){
+    	  var yStr=year.options[i].value;
+    	  var subStr=yStr.split("-");
+    	  if(y==subStr[0]){
+    		 year.options[i].selected=true;
+    	  }
+     }
+    	 
+    	 
+      }*/
+      /*function foo(){
+	    var noties = document.frm.olala.value;
+	    var sel = document.frm.sele.value;  // var sel = document.getElementById('sect').value;
+	    for(var i=0;i<document.getElementById('sect').options.length;i++){
+	       alert(document.getElementById('sect').options(i).selected);
+	    }
+	}*/
+   $('#starttime').datepicker();
+   $('#endtime').datepicker();
+</script>
+<script type="text/javascript"  src="__PUBLIC__/js/tron.js"></script>

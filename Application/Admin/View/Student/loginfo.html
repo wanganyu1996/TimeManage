@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台登录信息查看</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<style>
+ body{
+   margin:0px;
+   padding:0px;
+ }
+.contain{
+  width:auto;
+  height:800px;
+}
+.up{
+  width:auto;
+  height:200px;
+  text-align:center;
+}
+.down{
+  width:auto;
+  height:600px;
+  text-align:center;
+}
+th{
+  text-align:center;
+}
+tr{
+  text-align:center;
+}
+.pageInfo{
+ width:auto;
+ height:50px;
+}
+</style>
+</head>
+<body>
+    <div class="contain">
+	    
+        <div class="up">
+		   
+		          <div class="alert alert-info" role="alert">
+				      <font size="5px" >登录信息查询</font><font size="4px" color="red">（注意学号或者密码填一个即可，也可都填）</font>
+				  </div>
+		   <form action="__SELF__" >
+				   <div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1">姓名</span>
+						  <input id="stuname" name="stuname" type="text"  value="<?php if(I('stuname',-1)){echo I('get.stuname');}?>"class="form-control" placeholder="姓名" aria-describedby="basic-addon1">
+				   </div>
+				   <div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1">学号</span>
+						  <input id="stuid" name="stuid" type="text"  value="<?php if(I('stuid',-1)){echo I('get.stuid');}?>" class="form-control" placeholder="学号" aria-describedby="basic-addon1">
+				   </div>
+				    <button type="submit" class="btn btn-info" id="submit" >查看</button>	
+					<script>
+					   function checkIsRight(){
+					       var stuName = document.getElementById('stuname');
+						   var stuId = document.getElementById('stuid');
+						   
+						   if(stuName.value=="" && stuId.value==""){
+						     alert('输入不得为空');
+						     return false;
+						   }
+					     return true;
+					   } 
+					
+					
+					</script>
+           </form>
+		</div>
+		
+        <div class="down">
+                <div class="alert alert-info" role="alert">
+				      <font size="5px" >信息显示</font>
+		        </div>
+                  <div class="table-responsive">
+						 <table class="table table-striped">
+						  <tr class="table"><th>学号</th><th>姓名</th><th>班级</th><th>最近登录时间</th></tr>
+						 <volist name="info" id="v">
+								<tr><td>{$v.stuid}</td><td>{$v.stuname}</td><td>{$v.stuclass}</td><td><font  size="4px" color="red">{$v.logtime}</font></td></tr>
+					     </volist>
+						</table>
+		          </div> 
+          		<div class="pageInfo" style="font-weight:bold">{$pagelist}</div>
+		</div>
+
+
+
+    </div>	
+   
+</body>
+</html>

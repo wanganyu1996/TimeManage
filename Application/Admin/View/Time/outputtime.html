@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台导出时间页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+ <script>
+                                 function isCheck(){
+									var status=false;//接受用户选的状态,默认不会提交
+									status=confirm("确认导出时间记录",true,false);//点确认返回true,否则返回false;
+									return status;
+							   }
+                             </script> 	
+<style>
+.body{
+ margin:0px;
+ padding:0px;
+}
+.contain{
+ width:atuo;
+ height:248px;
+ margin:0px;
+ padding:0px;
+ text-align:center;
+}
+.contain2{
+ width:atuo;
+ height:300px;
+ margin:0px;
+ padding:0px;
+}
+.top{
+ width:auto;
+ height:73px;
+ text-align:center;
+}
+.main{
+ width:auto;
+ height:195px;
+}
+.left{
+  width:auto;
+  height:100px;
+  float:left;
+  padding-left:200px;
+}
+.right{
+  width:auto;
+  height:40px;
+  padding-left:30px;
+  text-align:center;
+} 
+.up{
+  width:auto;
+  height:230px;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+     <div class="contain">
+           <div class="top">
+		      <div class="alert alert-info" role="alert"><font size="5px">按班级、学期时间填报信息导出</font></div>
+		   </div>
+		   <div class="main">
+		      <form action="__MODULE__/Time/outputall" method="get" >
+		                             <div class="input-group input-group-lg">
+									<span class="input-group-addon" id="sizing-addon1">班级</span>
+									<select  name="classes" class="form-control">
+							         <?php foreach($classes as $k=>$v){ ?>
+								   <option value="<?php echo $classes[$k]['classname'];?>" <?php if(I('get.classes')==$classes[$k]['classname'])echo "selected";?>><?php echo $classes[$k]['classname'];?></option>
+							                   <?php }?>
+								</select>
+								</div>  
+		                       <div class="input-group input-group-lg">
+                                    <span class="input-group-addon" id="sizing-addon1">学年</span>
+						           <select class="form-control" name="year">
+                                   <option value="2012-2013" <?php if(I('get.year',-1)=='2012-2013') echo 'selected';?>>2012-2013</option>
+                                   <option value="2013-2014" <?php if(I('get.year',-1)=='2013-2014') echo 'selected';?>>2013-2014</option>
+                                   <option value="2014-2015" <?php if(I('get.year',-1)=='2014-2015') echo 'selected';?>>2014-2015</option>
+								   <option value="2015-2016"<?php if(I('get.year',-1)=='2015-2016') echo 'selected';?>>2015-2016</option>
+								  <option value="2016-2017"<?php if(I('get.year',-1)=='2016-2017') echo 'selected';?>>2016-2017</option>
+								  <option value="2017-2018"<?php if(I('get.year',-1)=='2017-2018') echo  'selected';?>>2017-2018</option>
+								  <option value="2018-2019"<?php if(I('get.year',-1)=='2018-2019') echo 'selected';?>>2018-2019</option>
+									</select>
+					          </div>
+			                  <div class="input-group input-group-lg">
+									<span class="input-group-addon" id="sizing-addon1">学期</span>
+											<select class="form-control" name="term">
+												<option value="1" <?php   if(I("get.term",-1))echo "selected";?>>1</option>
+												<option value="2" <?php  if(I("get.term")=="2")echo "selected"?>>2</option>
+											</select>
+					          </div>	
+							       <button type="submit" class="btn btn-info" id="search" onclick="return isYesNo()">导出</button>
+             	</form>					
+		   </div>
+     </div>	 
+     <div class="contain2">
+           <div class="top">
+		      <div class="alert alert-info" role="alert"><font size="5px">单个学生填报信息导出</font><font  size="4px" color="red">（注意学号姓名填一个即可）</font></div>
+		   </div>
+		   <div class="main">
+		  <div class="up">
+		            <form action="__MODULE__/Time/outputone" method="get">
+		                        <div class="input-group input-group-lg">
+                                    <span class="input-group-addon" id="sizing-addon1">学年</span>
+						           <select class="form-control" name="year2"> 
+                                   <option value="2012-2013" <?php if(I('get.year2',-1)=='2012-2013') echo 'selected';?>>2012-2013</option>
+                                   <option value="2013-2014" <?php if(I('get.year2',-1)=='2013-2014') echo 'selected';?>>2013-2014</option>
+                                   <option value="2014-2015" <?php if(I('get.year2',-1)=='2014-2015') echo 'selected';?>>2014-2015</option>
+								   <option value="2015-2016"<?php if(I('get.year2',-1)=='2015-2016') echo 'selected';?>>2015-2016</option>
+								  <option value="2016-2017"<?php if(I('get.year2',-1)=='2016-2017') echo 'selected';?>>2016-2017</option>
+								  <option value="2017-2018"<?php if(I('get.year2',-1)=='2017-2018') echo  'selected';?>>2017-2018</option>
+								  <option value="2018-2019"<?php if(I('get.year2',-1)=='2018-2019') echo 'selected';?>>2018-2019</option>
+						</select>
+					          </div> 
+		                     <div class="input-group input-group-lg">
+									<span class="input-group-addon" id="sizing-addon1">学期</span>
+											<select class="form-control" name="term2">
+												<option value="1">1</option>
+												<option value="2" <?php if(I("get.term2")=="2") echo selected?> >2</option>
+											</select>
+					          </div>  
+				   <div class="input-group input-group-lg">
+						  <span class="input-group-addon" id="basic-addon1">姓名</span>
+						  <input name="stuname" type="text"  value="<?php if(I('stuname',-1)){echo I('get.stuname');}?>"class="form-control" placeholder="姓名" aria-describedby="basic-addon1">
+				   </div>
+				   <div class="input-group  input-group-lg">
+						  <span class="input-group-addon" id="basic-addon1">学号</span>
+						  <input name="stuid" type="text"  value="<?php if(I('stuid',-1)){echo I('get.stuid');}?>" class="form-control" placeholder="学号" aria-describedby="basic-addon1">
+				   </div>
+				    <button type="submit" class="btn btn-info" id="submit" onclick="return isYesNo()">导出</button>	
+					<script>
+					   function isYesNo(){
+					     var res = confirm('您确认导出嘛');
+					     if(res){
+						   return true;
+						 }
+						 return false;
+					   }
+					
+					
+					
+					</script>
+           </form>
+		</div>						 
+             	</form>					
+		   </div>
+     </div>	 
+     
+   
+</body>
+</html>

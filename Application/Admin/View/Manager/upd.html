@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>南京工业大学电气工程与控制科学学院时间管理网站后台修改管理员信息</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <link href="__PUBLIC__/Admin/Css/mine.css" type="text/css" rel="stylesheet">
+        <link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <script src="__PUBLIC__/js/jquery.min.js"></script>
+    </head>
+    <body>
+       <div class="alert alert-info" role="alert">
+                 <font size="4px"> 当前位置是：管理员管理->修改管理员信息</font>
+        </div>
+        	    <span style="float: right; margin-right: 8px; font-weight: bold;">
+		                      <a style="text-decoration: none;" href="<?php echo U('Manager/showlist');?>">【返回】</a>
+		                    </span>
+		                    <br/>
+             <div class="table-responsive">
+             <form action="__SELF__" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{$info['id']}"/>
+            <table class="table table-striped">
+            
+                <tr class="table">
+                 <div class="input-group input-group-lg">
+						  <span class="input-group-addon" id="basic-addon1">管理员名称</span>
+						  <input name="ad_username" type="text"  value="{$info['ad_username']}" class="form-control" placeholder="管理员名称" aria-describedby="basic-addon1">
+				   </div>
+				   <div class="input-group input-group-lg">
+						  <span class="input-group-addon" id="basic-addon1">管理员真实姓名</span>
+						  <input name="real_name" type="text"  value="{$info['real_name']}" class="form-control" placeholder="导师真实姓名必须填写" aria-describedby="basic-addon1">
+				   </div>
+                </tr>
+                 <tr class="table">
+                   <div class="input-group input-group-lg">
+						  <span class="input-group-addon" id="basic-addon1">管理员密码</span>
+						  <input name="ad_password" type="text"  value="" class="form-control" placeholder="管理员密码,留空为不修改" aria-describedby="basic-addon1">
+				   </div>
+                </tr>
+                   <tr class="table">
+                       <div class="input-group input-group-lg">
+									<span class="input-group-addon" id="sizing-addon1">角　　    &nbsp;&nbsp; 色</span>
+											<select class="form-control" name=ad_role_id>
+											   <volist name="rinfo" id="v">
+                                              <eq name="info['ad_role_id']" value="$key">
+                                              <option value="{$key}" selected="selected">{$v}</option>
+                                               <else/> 
+                                               <option value="{$key}">{$v}</option>
+                                              </eq>
+                                              </volist>
+											</select>
+					   </div> 
+                </tr>
+                <tr class="table">
+                    <td colspan="2" align="center">
+                       <button type="submit" class="btn btn-info" id="submit">修改</button>
+                    </td>
+                </tr>  
+            </table>
+              </div>
+            </form>
+       
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+        <title>南京工业大学电气工程与控制科学学院时间管理网站后台辅导员列表页面</title>
+
+        <link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <script src="__PUBLIC__/js/jquery.min.js"></script>
+    </head>
+    <style>
+    th{
+			text-align:center;
+			background:lightblue; 	
+    }
+    td{
+			text-align:center;
+			background:white; 	
+    }
+    #null{
+				height:6px;
+	} 
+</style>
+    <body>
+        <style>
+            .tr_color{background-color: #9F88FF}
+        </style>
+        <div class="div_head">
+            <span>
+			     <div class="alert alert-info" role="alert"><font size="4px">当前位置是：辅导员班级调配->辅导员列表</font></div>
+            </span>
+        </div>
+      
+        <div style="font-size: 13px; margin: 10px 5px;">
+		
+		     <div class="table-responsive">
+					<table class="table table-striped">
+					<tr class="table"><th>角色名称</th><th>账号</th><th>真实姓名</th><th>操作</th></tr>
+						 <?php  foreach($info as $k=>$v):?>
+		                    <tr class="tron">
+		                        <td align="center">辅导员</td>
+		                        <td><?php echo $v['ad_username'];?></td>
+		                        <td><?php if($v['real_name']){echo $v['real_name'];}else{echo "空";}?></td>
+		                        <td><a href="<?php echo U('disclass?id='.$v['id']);?>">分配班级</a></td>
+		                   </tr>
+                  <?php endforeach;?>	
+					</table>
+		        </div> 
+       </div>
+    </body>
+</html>
+<script type="text/javascript"  src="__PUBLIC__/js/tron.js"></script>

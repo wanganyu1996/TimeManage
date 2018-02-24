@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台成绩页面</title>
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="__PUBLIC__/js/jquery.min.js"   language="javascript"></script>
+</head>
+<style>
+
+th{
+  width:80px;
+  height:40px;
+  text-align:center;
+}
+
+td{
+ width:80px;
+ height:40px;
+ text-align:center;
+}
+.pageinfo{
+ width:auto;
+ height:50px;
+ font-weight:bold;
+}
+#button{
+	text-align:center;
+}
+.pageinfo{
+	text-align:center;
+	width:auto;
+	font-weight:bold;
+}
+#score{
+	text-align:center;
+}
+#list{
+	text-align:center;
+}
+</style>
+<body>
+
+         <div  id="score" class="alert alert-info" role="alert"><font size="5px">成绩查询</font></div>
+     <form action="__SELF__" method="get">       
+   
+		  <div class="input-group input-group-mg">
+              <span class="input-group-addon">学年</span>
+			  	  <select class="form-control"  name="year" id="selectyear">
+			      <option value="2012-2013" <?php if(I('get.year',-1)=='2012-2013') echo 'selected';?> >2012-2013</option>
+			      <option value="2013-2014" <?php if(I('get.year',-1)=='2013-2014') echo 'selected';?>>2013-2104</option>
+			      <option value="2014-2015"<?php if(I('get.year',-1)=='2014-2015') echo 'selected';?>>2014-2015</option>
+			      <option value="2015-2016"<?php if(I('get.year',-1)=='2015-2016') echo 'selected';?>>2015-2016</option>
+			      <option value="2016-2017"<?php if(I('get.year',-1)=='2016-2017') echo 'selected';?>>2016-2017</option>
+			      <option value="2017-2018"<?php if(I('get.year',-1)=='2017-2018') echo 'selected';?>>2017-2018</option>
+			      <option  value="2018-2019"<?php if(I('get.year',-1)=='2018-2019') echo 'selected';?>>2018-2019</option>
+			      <option value="2019-2020"<?php if(I('get.year',-1)=='2019-2020') echo 'selected';?>>2019-2020</option>
+			      <option value="2020-2021"<?php if(I('get.year',-1)=='2020-2021') echo 'selected';?>>2020-2021</option>
+			      <option value="2021-2022"<?php if(I('get.year',-1)=='2021-2022') echo 'selected';?>>2021-2022</option>
+			      <option value="2022-2023"<?php if(I('get.year',-1)=='2022-2023') echo 'selected';?>>2022-2023</option>
+			  </select>
+		   </div>  
+		   <div class="input-group input-group-mg">
+              <span class="input-group-addon">学期</span>
+			  <select class="form-control" id="selectterm" name="term">
+			      <option value="1" <?php if(I('get.term',-1)){echo "selected";}?>>1</option>
+			      <option value="2" <?php if(I('get.term',-1)==2){echo "selected";}?>>2</option>
+			  </select>
+		   </div>  
+		   <div id="button"><button class="btn btn-success" type="submit">查询</button></div>
+	</div>	   
+		   <div class="alert alert-info" role="alert" id="list"><font size="4px" >成绩列表</font></div>
+		   <div class="table-responsive">
+		   <table class="table table-striped">
+		        <tr class="tron"><th>学年</th><th>学期</th><th>学号</th><th>姓名</th><th>课程名</th><th>学分</th><th>选修状态</th><th>分数</th></tr>
+		       <volist name="info" id="v">
+		       <tr  class="tron"><td>{$v.years}</td><td>{$v.term}</td><td>{$v.stuid}</td><td>{$v.stuname}</td><td>{$v.course_name}</td><td>{$v.course_xf}</td><td>{$v.course_xxzt}</td><td>{$v.course_score}</td></tr>  
+		       </volist>
+		   </table>
+		   </div>
+		   <div class="pageinfo">{$pagelist}</div>
+<!---->
+
+</body>
+</html>
+<script type="text/javascript"  src="__PUBLIC__/js/tron.js"></script>

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站后台界面学期时间导入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<link href="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="__PUBLIC__/datepicker/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/datepicker_zh-cn.js"></script>
+<style>
+body{
+margin:0px;
+padding:0px;
+}
+ .contain{
+   width:auto;
+   height:800px;
+   width:auto;
+ }
+ .top{
+  width:auto;
+  height:90px;
+  text-align:center;
+ }
+ .schoolYear{
+  width:auto;
+  height:80px;
+ }
+ .schoolTerm{
+  width:auto;
+  height:50px;
+  
+ }          
+ .schoolTerm1{
+  width:auto;
+  height:50px;
+ margin-top:30px;
+ }            
+ .schoolTime{
+ width:auto;
+  height:100px;
+  
+ }
+ .login{
+  width:auto;
+  height:100px;
+  text-align:center;
+ }
+</style>
+</head>
+<body>
+      <div class="contain">
+			  <div class="top">
+				 <div class="alert alert-info" role="alert"><font size="4px">请输入学期信息</font></div>
+			  </div>
+		  <form action="__MODULE__/Settings/setterm" method="post">
+		      <div class="schoolYear">
+						 <div class="input-group input-group-lg">
+									<span class="input-group-addon" id="sizing-addon1">&nbsp;&nbsp;&nbsp;&nbsp;学年&nbsp;&nbsp;&nbsp;</span>
+										   <select class="form-control" name="years">
+												 <option value="2012-2013">2012-2013</option>
+												 <option value="2013-2014">2013-2014</option>
+												 <option value="2014-2015">2014-2015</option>
+												 <option value="2015-2016">2015-2016</option>
+												 <option value="2016-2017">2016-2017</option>
+												 <option value="2017-2018">2017-2018</option>
+												 <option value="2018-2019">2018-2019</option>
+												  <option value="2019-2020">2019-2020</option>
+												 <option value="2020-2021">2020-2021</option>
+											</select>
+								</div>   
+			  </div>
+			  
+			  <div class="schoolTerm">
+			              <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="sizing-addon1">&nbsp;&nbsp;&nbsp;&nbsp;学期&nbsp;&nbsp;&nbsp;</span>
+									<select class="form-control" name="term" disabled>
+										<option value="1">第一学期</option>
+									</select>
+					    </div>
+			  </div>
+			  <div class="schoolTime">
+			                <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">开学时间</span>
+										 <input type="text" id="starttime" name="starttime" class="form-control"  placeholder="开始时间" aria-describedby="basic-addon1">
+						   </div>
+						   <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">结束时间</span>
+										 <input type="text"   id="endtime" name="endtime" class="form-control" placeholder="开始时间" aria-describedby="basic-addon1">
+						   </div>
+			  </div>
+			  <div class="schoolTerm1">
+			              <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="sizing-addon1">&nbsp;&nbsp;&nbsp;&nbsp;学期&nbsp;&nbsp;&nbsp;</span>
+									<select class="form-control" name="term2" disabled>
+										<option value="2">第二学期</option>
+									</select>
+					    </div>
+			  </div>
+			  <div class="schoolTime">
+			                <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">开学时间</span>
+										 <input type="text" id="starttime2" name="starttime2" class="form-control"  placeholder="开始时间" aria-describedby="basic-addon1">
+						   </div>
+						   <div class="input-group input-group-lg">
+									  <span class="input-group-addon" id="basic-addon1">结束时间</span>
+										 <input type="text"   id="endtime2" name="endtime2" class="form-control" placeholder="开始时间" aria-describedby="basic-addon1">
+						   </div>
+			  </div>
+	          <div class="login">
+			               <div class="stuinfo">		 
+						      <button class="btn btn-info" type="submit" onclick="return isYesNo()">确定</button>	 
+						   </div>
+                           <script>
+                              function isYesNo(){
+							      var res=confirm("你确认嘛");
+							      if(res){
+								    return true;
+								  }
+								  return false;
+							  }
+                                   
+                           </script>						   
+				</div>		   
+			  
+			  </div>
+	      </form>
+	  </div>
+     
+   
+</body>
+</html>
+<script>
+$("#starttime").datepicker();
+$("#endtime").datepicker();
+$("#starttime2").datepicker();
+$("#endtime2").datepicker();
+</script>
+

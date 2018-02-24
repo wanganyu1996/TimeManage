@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>南京工业大学电气工程与控制科学学院时间管理网站分配班级页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<style>
+ body{
+   margin:0px;
+   padding:0px;
+ }
+.contain{
+  width:auto;
+  height:800px;
+  margin-left:10px;
+  
+}
+.up{
+  width:auto;
+  height:300px;
+  text-align:center;
+}
+th{
+  text-align:center;
+}
+tr{
+  text-align:center;
+}
+.pageInfo{
+ width:auto;
+ height:50px;
+}
+input{border:0;}
+</style>
+</head>
+<body>
+    <div class="contain">
+        <div class="up">
+		   
+						  <div class="alert alert-info" role="alert">
+							  <font size="5px" >为辅导员分配班级</font>
+						  </div>
+						    <span style="float: right; margin-right: 8px; font-weight: bold;">
+		                      <a style="text-decoration: none;" href="<?php echo U('Teacher/distribute');?>">【返回】</a>
+		                    </span>
+		                    <br/>
+             <form action="__SELF__" method="get">
+						   <div class="input-group input-group-lg">
+								  <span class="input-group-addon" id="basic-addon1">真实姓名</span>
+								  <input name="stuname" type="text" value="<?php if($info['real_name']){echo $info['real_name'];}else{echo'空';}?>" class="form-control"
+								   disabled
+								   placeholder="姓名" aria-describedby="basic-addon1">
+						   </div>
+						   <div class="input-group input-group-lg">
+								  <span class="input-group-addon" id="basic-addon1">账　　号</span>
+								  <input name="stuname" type="text" value="{$info['ad_username']}"  class="form-control" 
+								  disabled
+								  placeholder="账号" aria-describedby="basic-addon1"
+								  　>
+						   </div>
+						    <div class="input-group input-group-lg">
+									<span class="input-group-addon" id="sizing-addon1">年　　级</span>
+									<select  name="nj" class="form-control">
+									<option value="13" <?php if(I("get.nj")=="13")echo "selected";?>>2013级</option>
+								   <option value="14" <?php if(I("get.nj")=="14")echo "selected";?>>2014级</option>
+								   <option value="15" <?php if(I("get.nj")=="15")echo "selected";?>>2015级</option>
+								   <option value="16" <?php if(I("get.nj")=="16")echo "selected";?>>2016级</option>
+								   <option value="17" <?php if(I("get.nj")=="17")echo "selected";?>>2017级</option>
+								   <option value="18" <?php if(I("get.nj")=="18")echo "selected";?>>2018级</option>
+								   <option value="19" <?php if(I("get.nj")=="19")echo "selected";?>>2019级</option>
+								   <option value="20" <?php if(I("get.nj")=="20")echo "selected";?>>2020级</option>
+								   <option value="21" <?php if(I("get.nj")=="21")echo "selected";?>>2021级</option>
+								   <option value="22" <?php if(I("get.nj")=="22")echo "selected";?>>2022级</option>
+								   <option value="23" <?php if(I("get.nj")=="23")echo "selected";?>>2023级</option>
+								   <option value="24" <?php if(I("get.nj")=="24")echo "selected";?>>2024级</option>
+								   <option value="25" <?php if(I("get.nj")=="25")echo "selected";?>>2025级</option>
+								</select>
+								</div> 
+							<button type="submit" class="btn btn-info" id="submit">分配</button>	
+            </form>
+		</div>
+
+
+
+    </div>	
+   
+</body>
+</html>
