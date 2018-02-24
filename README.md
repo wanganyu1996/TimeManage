@@ -4,9 +4,17 @@
 该系统后台管理的最大特点：就是实现了角色权限的动态分配。
 党委书记为最高管理员，具有最高权限。辅导员与导师权限较低。
 
-
-
-首先登陆系统：(此处以最高权限进入)
+前台系统：
+ ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_1.png)
+ ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_2.png)
+ ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_3.png)
+ ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_4.png)
+ ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_5.png)
+ ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_6.png)
+ ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_7.png)
+ ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_8.png)
+  ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/front_9.png)
+首先后台系统登陆系统：(此处以最高权限进入)
  ![](https://github.com/wanganyu1996/TimeManage/blob/master/%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/images/1.png)
 
 
